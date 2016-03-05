@@ -112,11 +112,7 @@
             var typing_ele = $(room[index]);
             var initText = typing_ele.text();
 
-            //console.log(initText)
-
             function delete_char(ele, i) {
-
-                console.log(ele, i);
 
                 //get value of index by closure
                 $("span[typer='cursor']").remove();
