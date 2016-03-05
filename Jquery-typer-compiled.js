@@ -21,9 +21,11 @@
         var cursorBlink = _ref$cursorBlink === undefined ? 100 : _ref$cursorBlink;
 
 
+        //set const
         var room = this;
         var $cursor = "<span typer=\"cursor\">&nbsp;" + cursor + "</span>";
 
+        //function which describes typing by row
         function render_ele(index) {
 
             var typing_ele = $(room[index]);

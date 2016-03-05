@@ -12,16 +12,19 @@
 
     $.fn.typer = function ({ typerString , delay=100 , cursor='|', cursorBlink=100 },callback) {
 
-        var room = this;
-        var $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`
 
+        //set const
+        const room = this;
+        const $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`
+
+        //function which describes typing by row
         function render_ele(index) {
 
             var typing_ele = $(room[index]);
             var initHTML = typing_ele.html();
 
             function render_char(ele, i) {
-                
+
                 //get value of index by closure
                 $("span[typer='cursor']").remove();
                 ele.html( initHTML + typerString.substr(0, i) + $cursor );
