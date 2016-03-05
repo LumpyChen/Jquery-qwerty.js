@@ -2,6 +2,7 @@
 
 A JQuery plugin which provides typing / deleting effect of words.
 
+##How to use
 
 It provide two functions:
 
@@ -24,7 +25,12 @@ It provide two functions:
 
 ```
 
-The 'callback' argument is not necessary.
+
+##Arguments
+
+
+
+###Object
 
 | typerString | delay |  cursor  | cursorBlink |
 |:--------:|:-----:|:----:|:----:|
@@ -32,8 +38,25 @@ The 'callback' argument is not necessary.
 |String|Number|String|Number|
 |The String you want to type.|The millisecond between each type.|The cursor character.|The interval between cursor's blink.|
 
-If your Jquery object has more than one element, the typing animation will be excuted by lines, and the cursor will stay at last element's end after the animation.
+The 'callback' argument is not necessary, which will be excuted after the animation.
+
+
+##Execute tips
+
+If your Jquery object has more than one element, the typing animation will be **executed by lines**, and the cursor will stay at last element's end after the animation.
 
 After the animation, the cursor will be set a timer of blink, which can be removed by clicking.
 
 You can see how it goes in the example folder : )
+
+
+## Contact
+
+If you find bugs or have some suggestion, contact me by [lumpychen@outlook.com](mailto:lumpychen@outlook.com)
+
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2013-2016 Evan You
