@@ -11,7 +11,34 @@
 
 (function ($) {
 
-    $.fn.typer = function (_ref, callback) {
+    //const function: set the blink of cursor
+    var setBlink = function setBlink(cursorBlink) {
+        var timer2 = setInterval(function () {
+            if ($("span[typer='cursor']").css('visibility') != "hidden") {
+                $("span[typer='cursor']").css('visibility', 'hidden');
+            } else {
+                $("span[typer='cursor']").css('visibility', 'visible');
+            }
+        }, cursorBlink);
+        return timer2;
+    };
+
+    //const function: click to remove the cursor
+    var clickRemove = function clickRemove(timer, callback) {
+
+        $("span[typer='cursor']").css('cursor', 'pointer');
+        $("span[typer='cursor']").click(function () {
+            clearInterval(timer);
+            $("span[typer='cursor']").remove();
+        });
+
+        //callback
+        if (callback) {
+            callback();
+        }
+    };
+
+    $.fn.qwerty = function (_ref, callback) {
         var typerString = _ref.typerString;
         var _ref$delay = _ref.delay;
         var delay = _ref$delay === undefined ? 100 : _ref$delay;
@@ -56,18 +83,8 @@
                         clearTimeout(room.timer1);
 
                         //set timer of cursor's blink
-                        var timer2 = setInterval(function () {
-                            if ($("span[typer='cursor']").css('display') != "none") {
-                                $("span[typer='cursor']").hide();
-                            } else {
-                                $("span[typer='cursor']").show();
-                            }
-                        }, cursorBlink);
-
-                        //callback
-                        if (callback) {
-                            callback();
-                        };
+                        var timerBlink = setBlink(cursorBlink);
+                        clickRemove(timerBlink, callback);
                     }
                 }
             }
@@ -77,6 +94,13 @@
 
         render_ele(0);
     };
-})(jQuery);
 
-//# sourceMappingURL=Jquery-typer-compiled.js.map
+    $.fn.qwertyDel = function (_ref2, callback) {
+        var _ref2$delay = _ref2.delay;
+        var delay = _ref2$delay === undefined ? 100 : _ref2$delay;
+        var _ref2$cursor = _ref2.cursor;
+        var cursor = _ref2$cursor === undefined ? '|' : _ref2$cursor;
+        var _ref2$cursorBlink = _ref2.cursorBlink;
+        var cursorBlink = _ref2$cursorBlink === undefined ? 100 : _ref2$cursorBlink;
+    };
+})(jQuery);
