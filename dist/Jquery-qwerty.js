@@ -45,7 +45,7 @@
         var _ref$cursor = _ref.cursor;
         var cursor = _ref$cursor === undefined ? '|' : _ref$cursor;
         var _ref$cursorBlink = _ref.cursorBlink;
-        var cursorBlink = _ref$cursorBlink === undefined ? 100 : _ref$cursorBlink;
+        var cursorBlink = _ref$cursorBlink === undefined ? 1000 : _ref$cursorBlink;
 
 
         //set const
@@ -101,6 +101,56 @@
         var _ref2$cursor = _ref2.cursor;
         var cursor = _ref2$cursor === undefined ? '|' : _ref2$cursor;
         var _ref2$cursorBlink = _ref2.cursorBlink;
-        var cursorBlink = _ref2$cursorBlink === undefined ? 100 : _ref2$cursorBlink;
+        var cursorBlink = _ref2$cursorBlink === undefined ? 1000 : _ref2$cursorBlink;
+
+
+        var room = this;
+        var $cursor = "<span typer=\"cursor\">&nbsp;" + cursor + "</span>";
+
+        function delete_ele(index) {
+
+            var typing_ele = $(room[index]);
+            var initText = typing_ele.text();
+
+            //console.log(initText)
+
+            function delete_char(ele, i) {
+
+                console.log(ele, i);
+
+                //get value of index by closure
+                $("span[typer='cursor']").remove();
+
+                ele.html(initText.substr(0, i) + $cursor);
+
+                if (0 < i) {
+
+                    //typewriting
+
+                    room.timer2 = setTimeout(function () {
+                        delete_char(ele, i - 1);
+                    }, delay);
+                } else {
+
+                    //change row
+                    if (index > 0) {
+                        --index;
+                        delete_ele(index);
+                    } else {
+
+                        //when it ends.
+                        clearTimeout(room.timer2);
+
+                        //set timer of cursor's blink
+                        var timerBlink = setBlink(cursorBlink);
+                        clickRemove(timerBlink, callback);
+                    }
+                }
+            }
+
+            delete_char(typing_ele, initText.length - 1);
+        }
+
+        delete_ele(room.size() - 1);
     };
 })(jQuery);

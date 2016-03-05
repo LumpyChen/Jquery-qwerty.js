@@ -7,16 +7,23 @@
     <script type="text/javascript">
         $(function() {
             $('h1').qwerty({
-
                 'typerString':"Hello Qwerty",
                 'delay': 100,
                 'cursor': '|',
-                'cursorBlink': 400,
+                'cursorBlink': 1000,
 
-            }, function () {
-                alert('Done')
+            },  function () {
+                    $('h1').qwertyDel({
+                        'delay': 100,
+                        'cursor': '|',
+                        'cursorBlink': 1000,
+                    }, function () {
+                        alert('Done')
+                })
             })
         })
+
+
 
     </script>
     <title>Qwerty</title>
