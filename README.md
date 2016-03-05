@@ -59,4 +59,4 @@ If you find bugs or have some suggestion, contact me by [lumpychen@outlook.com](
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2013-2016 Evan You
+Copyright (c) 2013-2016 Lumpy Chen
