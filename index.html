@@ -15,9 +15,10 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Jquery-qwerty.js</h1>
+      <div id="hd">
+        <h1></h1>
         <p>A JQuery plugin which can provide typing / deleting effect of words. </p>
-
+      </div>
         <p class="view"><a href="https://github.com/LumpyChen/Jquery-qwerty.js">View the Project on GitHub <small>LumpyChen/Jquery-qwerty.js</small></a></p>
 
 
@@ -122,6 +123,33 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+    <script src="javascripts/Jquery-qwerty.js"></script>
+    <script>
+      function qwertee(){
+        $('#hd>h1').qwerty({
+          typerString: "Jquery-qwerty.js",
+          delay:200, 
+          cursor:'|', 
+        },function(){
+          $('#hd>p').qwertyDel({
+            delay:200, 
+            cursor:'|', 
+          },function(){
+            $('#hd>p').qwerty({
+            typerString:"A JQuery plugin which can provide typing / deleting effect of words.",
+            delay:200, 
+            cursor:'|', 
+            },function(){
+              $('#hd>h1').qwertyDel({
+                delay:200, 
+                cursor:'|', 
+              },qwertee)
+            })
+          })
+        })  
+      }
+      qwertee();
+    </script>
   </body>
 </html>
