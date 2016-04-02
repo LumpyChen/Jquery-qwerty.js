@@ -41,17 +41,17 @@
 
 <div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.ele<span class="pl-pds">'</span></span>).<span class="pl-en">qwerty</span>({
         typerString<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>,
-        delay<span class="pl-k">=</span><span class="pl-c1">100</span> , 
-        cursor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>|<span class="pl-pds">'</span></span>, 
-        cursorBlink<span class="pl-k">=</span><span class="pl-c1">100</span>
+        delay<span class="pl-k">:</span><span class="pl-c1">100</span> , 
+        cursor<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>|<span class="pl-pds">'</span></span>, 
+        cursorBlink<span class="pl-k">:</span><span class="pl-c1">100</span>
     },callback)
     <span class="pl-c">//'qwerty' is a function which type a string in provided element. </span>
 
 
     <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.ele<span class="pl-pds">'</span></span>).<span class="pl-en">qwertyDel</span>({
-        delay<span class="pl-k">=</span><span class="pl-c1">100</span> , 
-        cursor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>|<span class="pl-pds">'</span></span>, 
-        cursorBlink<span class="pl-k">=</span><span class="pl-c1">100</span> 
+        delay<span class="pl-k">:</span><span class="pl-c1">100</span> , 
+        cursor<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>|<span class="pl-pds">'</span></span>, 
+        cursorBlink<span class="pl-k">:</span><span class="pl-c1">undefined</span> 
     },callback)
     <span class="pl-c">//'qwertyDel' is a function which delete all the text in provided element.</span>
 </pre></div>
@@ -77,7 +77,7 @@
 <td align="center">default:100</td>
 <td align="center">default:<code>|</code>
 </td>
-<td align="center">default:1000</td>
+<td align="center">default:undefined</td>
 </tr>
 <tr>
 <td align="center">String</td>
@@ -89,7 +89,7 @@
 <td align="center">The String you want to type.</td>
 <td align="center">The millisecond between each type.</td>
 <td align="center">The cursor character.</td>
-<td align="center">The interval between cursor's blink.</td>
+<td align="center">The interval between cursor's blink.(The cursor will blink if it is defined)</td>
 </tr>
 </tbody>
 </table>
