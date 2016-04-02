@@ -9,17 +9,17 @@ It provide two functions:
 ```javascript
     $('.ele').qwerty({
         typerString: "Hello",
-        delay=100 , 
-        cursor='|', 
-        cursorBlink=100
+        delay:100 , 
+        cursor:'|', 
+        cursorBlink:100
     },callback)
     //'qwerty' is a function which type a string in provided element. 
 
 
     $('.ele').qwertyDel({
-        delay=100 , 
-        cursor='|', 
-        cursorBlink=100 
+        delay:100 , 
+        cursor:'|', 
+        cursorBlink:100 
     },callback)
     //'qwertyDel' is a function which delete all the text in provided element.
 
@@ -34,9 +34,9 @@ It provide two functions:
 
 | typerString | delay |  cursor  | cursorBlink |
 |:--------:|:-----:|:----:|:----:|
-|not default|default:100 |default:`|`|default:1000|
+|not default|default:100 |default:`|`|default:undefined|
 |String|Number|String|Number|
-|The String you want to type.|The millisecond between each type.|The cursor character.|The interval between cursor's blink.|
+|The String you want to type.|The millisecond between each type.|The cursor character.|The interval between cursor's blink.(The cursor will blink if `cursorBlink` is defined)|
 
 The 'callback' argument is not necessary, which will be excuted after the animation.
 

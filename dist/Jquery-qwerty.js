@@ -88,6 +88,11 @@
                             if (cursorBlink) {
                                 var timerBlink = setBlink(cursorBlink);
                                 clickRemove(timerBlink, callback);
+                            } else {
+                                $("span[typer='cursor']").remove();
+                                if (callback) {
+                                    callback();
+                                }
                             }
                         }
                     }
@@ -119,9 +124,13 @@
                 function delete_char(ele, i) {
 
                     //get value of index by closure
-                    $("span[typer='cursor']").remove();
+
+                    if ($("span[typer='cursor']")[0]) {
+                        $("span[typer='cursor']").remove();
+                    }
 
                     ele.html(initText.substr(0, i) + $cursor);
+                    //console.log('ss')
 
                     if (0 < i) {
 
@@ -145,6 +154,11 @@
                             if (cursorBlink) {
                                 var timerBlink = setBlink(cursorBlink);
                                 clickRemove(timerBlink, callback);
+                            } else {
+                                $("span[typer='cursor']").remove();
+                                if (callback) {
+                                    callback();
+                                }
                             }
                         }
                     }
