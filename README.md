@@ -2,6 +2,8 @@
 
 A JQuery plugin which provides typing / deleting effect of words.
 
+[Click here to check the published page.](http://lumpychen.github.io/Jquery-qwerty.js)
+
 ##How to use
 
 It provide two functions:
