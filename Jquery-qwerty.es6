@@ -37,122 +37,120 @@
         }
     }
 
-    $.fn.qwerty = function ({ typerString , delay=100 , cursor='|', cursorBlink=1000 }, callback) {
+    $.fn.extend({
 
+        qwerty: function ({ typerString , delay=100 , cursor='|', cursorBlink=undefined }, callback) {
 
-        //set const
-        const room = this;
-        const $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`;
+            //set const
+            const room = this;
+            const $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`;
 
-        //function which describes typing by row
-        function render_ele(index) {
+            //function which describes typing by row
+            function render_ele(index) {
 
-            var typing_ele = $(room[index]);
-            var initHTML = typing_ele.html();
+                var typing_ele = $(room[index]);
+                var initHTML = typing_ele.html();
 
-            function render_char(ele, i) {
+                function render_char(ele, i) {
 
-                //get value of index by closure
-                $("span[typer='cursor']").remove();
-                ele.html(initHTML + typerString.substr(0, i) + $cursor);
+                    //get value of index by closure
+                    $("span[typer='cursor']").remove();
+                    ele.html(initHTML + typerString.substr(0, i) + $cursor);
 
-                if (typerString.length > i) {
+                    if (typerString.length > i) {
 
-                    //typewriting
+                        //typewriting
 
-                    room.timer1 = setTimeout(function () {
-                        render_char(ele, i + 1);
-                    }, delay);
-
-                }
-                else {
-
-                    //change row
-                    if (index < typing_ele.length) {
-                        ++index;
-                        render_ele(index);
-
-
-                    } else {
-
-                        //when it ends.
-                        clearTimeout(room.timer1);
-
-                        //set timer of cursor's blink
-                        let timerBlink = setBlink(cursorBlink);
-                        clickRemove(timerBlink,callback);
+                        room.timer1 = setTimeout(function () {
+                            render_char(ele, i + 1);
+                        }, delay);
 
                     }
-                }
-            }
+                    else {
 
-            render_char(typing_ele, 0);
-        }
-
-        render_ele(0);
-    };
+                        //change row
+                        if (index < typing_ele.length) {
+                            ++index;
+                            render_ele(index);
 
 
+                        } else {
 
+                            //when it ends.
+                            clearTimeout(room.timer1);
 
+                            //set timer of cursor's blink
+                            if(cursorBlink) {
+                                let timerBlink = setBlink(cursorBlink);
+                                clickRemove(timerBlink, callback);
+                            }
 
-
-    $.fn.qwertyDel = function ({ delay=100 , cursor='|', cursorBlink=1000 }, callback){
-
-
-        const room = this;
-        const $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`;
-
-        function delete_ele(index){
-
-            var typing_ele = $(room[index]);
-            var initText = typing_ele.text();
-            
-            function delete_char(ele, i) {
-
-                //get value of index by closure
-                $("span[typer='cursor']").remove();
-
-                ele.html(initText.substr(0, i) + $cursor);
-
-                if (0 < i) {
-
-                    //typewriting
-
-                    room.timer2 = setTimeout(function () {
-                        delete_char(ele, i - 1);
-                    }, delay);
-
-                }
-
-                else {
-
-                    //change row
-                    if (index > 0) {
-                        --index;
-                        delete_ele(index);
-
-
-                    } else {
-
-                        //when it ends.
-                        clearTimeout(room.timer2);
-
-                        //set timer of cursor's blink
-                        let timerBlink = setBlink(cursorBlink);
-                        clickRemove(timerBlink,callback);
-
+                        }
                     }
                 }
+
+                render_char(typing_ele, 0);
             }
 
-            delete_char(typing_ele,initText.length-1);
+            render_ele(0);
+        },
 
+        qwertyDel : function ({ delay=100 , cursor='|', cursorBlink=undefined }, callback) {
+
+            const room = this;
+            const $cursor = `<span typer="cursor">&nbsp;${cursor}</span>`;
+
+            function delete_ele(index) {
+
+                var typing_ele = $(room[index]);
+                var initText = typing_ele.text();
+
+                function delete_char(ele, i) {
+
+                    //get value of index by closure
+                    $("span[typer='cursor']").remove();
+
+                    ele.html(initText.substr(0, i) + $cursor);
+
+                    if (0 < i) {
+
+                        //typewriting
+
+                        room.timer2 = setTimeout(function () {
+                            delete_char(ele, i - 1);
+                        }, delay);
+
+                    }
+
+                    else {
+
+                        //change row
+                        if (index > 0) {
+                            --index;
+                            delete_ele(index);
+
+
+                        } else {
+
+                            //when it ends.
+                            clearTimeout(room.timer2);
+
+                            //set timer of cursor's blink
+                            if(cursorBlink) {
+                                let timerBlink = setBlink(cursorBlink);
+                                clickRemove(timerBlink, callback);
+                            }
+
+                        }
+                    }
+                }
+
+                delete_char(typing_ele, initText.length - 1);
+
+            }
+
+            delete_ele(room.size() - 1);
         }
-
-        delete_ele(room.size()-1);
-
-    }
-
+    })
 
 })(jQuery);

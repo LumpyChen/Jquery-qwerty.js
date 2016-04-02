@@ -5,14 +5,14 @@
     <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
     <script src="../dist/Jquery-qwerty.js"></script>
     <script type="text/javascript">
-        $(function() {
+        $(document).ready(function(){
             $('h1').qwerty({
                 'typerString':"Hello Qwerty",
                 'delay': 100,
                 'cursor': '|',
                 'cursorBlink': 1000,
 
-            },  function () {
+            },function(){
                     $('h1').qwertyDel({
                         'delay': 100,
                         'cursor': '|',
@@ -22,15 +22,11 @@
                 })
             })
         })
-
-
-
     </script>
     <title>Qwerty</title>
-    <h1>try to type sth!</h1>
-    <h1>try to type sth else!</h1>
 </head>
 <body>
-
+    <h1>try to type sth!</h1>
+    <h1>try to type sth else!</h1>
 </body>
 </html>
